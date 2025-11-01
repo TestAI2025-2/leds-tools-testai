@@ -37,7 +37,7 @@ def crew_ieee_test_plan(feature_content: str, strings: Dict[str, str]) -> str:
     task_ieee_writer: Task = TaskLoader.load_tasks(
         writer_task_dict,
         ieee_writer_agent,
-        #output_file="etapas_geracao/ieee_writer.md"
+        output_file="etapas_geracao/ieee_writer.andes"
     )
 
     # --- Etapa 2: revisão do plano ---
@@ -50,7 +50,7 @@ def crew_ieee_test_plan(feature_content: str, strings: Dict[str, str]) -> str:
         review_task_dict,
         ieee_reviewer_agent,
         context=[task_ieee_writer],
-        #output_file="etapas_geracao/ieee_review.md"
+        output_file="etapas_geracao/ieee_review.andes"
     )
 
     agents.extend([ieee_writer_agent, ieee_reviewer_agent])
@@ -62,7 +62,7 @@ def crew_ieee_test_plan(feature_content: str, strings: Dict[str, str]) -> str:
         tasks_dict["manager_ieee_task"],
         agent=manager,
         context=tasks,
-        output_file="resposta/plano_teste_ieee.md",
+        output_file="resposta/plano_teste_ieee.andes",
     )
 
     crew: Crew = Crew(

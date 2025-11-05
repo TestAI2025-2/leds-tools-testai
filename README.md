@@ -390,6 +390,8 @@ return JSONResponse(body)
 |Back-end   | Crew.ai | Plataforma de multi-agentes, os quais fazem a automação dos fluxos de testes.|
 |Back-end   | LLM-model | Utiliza o modelo Gemini 1.5 flash como backend da LLM |
 
+## Link Relátorio
+- [Relátorio](https://code.visualstudio.com/](https://docs.google.com/document/d/1h-8DpTMQpLNGEt77xoV32I9SNPKs9xiHLdixjeUdCBM/edit?tab=t.0#heading=h.owxnkm2tc66g)
 
 ## 📚 Referências Bibliográficas
 

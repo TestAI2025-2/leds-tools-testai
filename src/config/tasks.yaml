@@ -103,3 +103,8 @@ manager_xunit_task:
         Read and compare all generated C# xUnit codes and develop a final version based on them.
     expected_output: "ONLY the C# xUnit code generated without the code block like ```, DO NOT USE ANY MARKDOWN TAG"
     output_example: xunit_code_output
+
+gherkin_writer_task:
+  description: "Escreve cenários Gherkin baseados em um plano de testes ou arquivo .andes."
+  expected_output: "Arquivo .feature com cenários Gherkin válidos."
+  agent: "gherkin_writer_agent"

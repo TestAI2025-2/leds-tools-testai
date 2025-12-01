@@ -29,55 +29,55 @@ def crew_ieee_to_gherkin(andes_content: str, strings: Dict[str, Dict]) -> str:
         tasks: List[Task] = []
 
         # Escritor do Gherkin em padrão IEEE
-        writer_dict = agents_dict.get("gherkin_writer")
+        writer_dict = agents_dict.get("ieee_writer")
         if not writer_dict:
-            raise KeyError("Agente 'gherkin_writer' não encontrado no YAML de agentes.")
+            raise KeyError("Agente 'ieee_writer' não encontrado no YAML de agentes.")
 
-        gherkin_writer_agent: Agent = AgentLoader.load_agents(writer_dict, llm_high_temp)
+        ieee_writer_agent: Agent = AgentLoader.load_agents(writer_dict, llm_high_temp)
 
-        writer_task_dict = tasks_dict.get("gherkin_writer_task")
+        writer_task_dict = tasks_dict.get("ieee_writer_task")
         if not writer_task_dict:
-            raise KeyError("Tarefa 'gherkin_writer_task' não encontrada no YAML de tarefas.")
+            raise KeyError("Tarefa 'ieee_writer_task' não encontrada no YAML de tarefas.")
 
         writer_task_dict["description"] = writer_task_dict["description"].format(user_case=andes_content)
-        task_gherkin_writer: Task = TaskLoader.load_tasks(
+        task_ieee_writer: Task = TaskLoader.load_tasks(
             writer_task_dict,
-            gherkin_writer_agent,
-            output_file="etapas_geracao/gherkin_writer.feature"
+            ieee_writer_agent,
+            output_file="etapas_geracao/ieee_writer.feature"
         )
 
         # Review do gherkin
-        reviewer_dict = agents_dict.get("gherkin_reviewer")
+        reviewer_dict = agents_dict.get("ieee_reviewer")
         if not reviewer_dict:
-            raise KeyError("Agente 'gherkin_reviewer' não encontrado no YAML de agentes.")
+            raise KeyError("Agente 'ieee_reviewer' não encontrado no YAML de agentes.")
 
-        gherkin_reviewer_agent: Agent = AgentLoader.load_agents(reviewer_dict, llm_low_temp)
+        ieee_reviewer_agent: Agent = AgentLoader.load_agents(reviewer_dict, llm_low_temp)
 
-        review_task_dict = tasks_dict.get("gherkin_review")
+        review_task_dict = tasks_dict.get("ieee_reviewer_task")
         if not review_task_dict:
-            raise KeyError("Tarefa 'gherkin_review_task' não encontrada no YAML de tarefas.")
+            raise KeyError("Tarefa 'ieee_reviewer_task' não encontrada no YAML de tarefas.")
 
         review_task_dict["description"] = review_task_dict["description"].format(user_case=andes_content)
-        task_gherkin_review: Task = TaskLoader.load_tasks(
+        task_ieee_review: Task = TaskLoader.load_tasks(
             review_task_dict,
-            gherkin_reviewer_agent,
-            context=[task_gherkin_writer],
-            output_file="etapas_geracao/gherkin_review.feature"
+            ieee_reviewer_agent,
+            context=[task_ieee_writer],
+            output_file="etapas_geracao/ieee_review.feature"
         )
 
-        agents.extend([gherkin_writer_agent, gherkin_reviewer_agent])
-        tasks.extend([task_gherkin_writer, task_gherkin_review])
+        agents.extend([ieee_writer_agent, ieee_reviewer_agent])
+        tasks.extend([task_ieee_writer, task_ieee_review])
 
         # Aprovação do manager
-        manager_dict = agents_dict.get("manager_gherkin")
+        manager_dict = agents_dict.get("manager_ieee")
         if not manager_dict:
-            raise KeyError("Agente 'manager_gherkin' não encontrado no YAML de agentes.")
+            raise KeyError("Agente 'manager_ieee' não encontrado no YAML de agentes.")
 
         manager: Agent = AgentLoader.load_agents(manager_dict, llm_low_temp)
 
-        manager_task_dict = tasks_dict.get("manager_gherkin_task")
+        manager_task_dict = tasks_dict.get("manager_ieee_task")
         if not manager_task_dict:
-            raise KeyError("Tarefa 'manager_gherkin_task' não encontrada no YAML de tarefas.")
+            raise KeyError("Tarefa 'manager_ieee_task' não encontrada no YAML de tarefas.")
 
         final_task: Task = TaskLoader.load_tasks(
             manager_task_dict,

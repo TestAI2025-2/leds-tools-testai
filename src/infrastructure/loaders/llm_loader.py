@@ -11,9 +11,9 @@ class LLM_Loader:
         """
         Carrega a entidade LLM a partir de parâmetros fornecidos ou das variáveis de ambiente.
         """
-        model = model if model is not None else os.getenv("LLM_MODEL", "groq/llama-3.3-70b-versatile")
+        model = model if model is not None else os.getenv("LLM_MODEL", "gemini/gemini-2.0-flash-lite-001")
         if not model:
-            model = "groq/llama-3.3-70b-versatile"
+            model = "gemini/gemini-2.0-flash-lite-001"
 
         temp = temp if temp is not None else float(os.getenv("LLM_TEMPERATURE", 0.0))
         api_key = api_key or os.getenv("GROQ_API_KEY")

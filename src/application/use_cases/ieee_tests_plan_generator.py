@@ -107,8 +107,9 @@ def crew_ieee_to_gherkin(andes_content: str, strings: Dict[str, Dict]) -> str:
 if __name__ == "__main__":
     print("=== GERADOR DE ARQUIVO GHERKIN A PARTIR DE PLANO IEEE (.andes) ===")
     try:
+        andes_name = input("Digite o nome do arquivo .andes (ex: test.andes): ").strip()
         
-        andes_path = os.path.join("andes", f"test.andes")
+        andes_path = os.path.join("andes", andes_name)
 
         if not os.path.exists(andes_path):
             print(f"[ERRO] Arquivo '{andes_path}' não encontrado.")

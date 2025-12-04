@@ -25,7 +25,7 @@ def test_llm_loader_default_sem_ambiente(tmp_path, monkeypatch):
     monkeypatch.delenv("LLM_TEMPERATURE", raising=False)
     monkeypatch.delenv("GEMINI_API_KEY", raising=False)
     inst = LLM_Loader.load_from_params()
-    assert inst.model == "gemini/gemini-1.5-flash"
+    assert inst.model == "gemini/gemini-2.0-flash-lite-001"
     assert inst.temperature == 0.0
     assert inst.api_key is None
 
@@ -42,7 +42,7 @@ def test_llm_loader_model_empty_str(monkeypatch):
     monkeypatch.setenv("LLM_MODEL", "")
     # modelo vazio deve usar default
     inst = LLM_Loader.load_from_params()
-    assert inst.model == "gemini/gemini-1.5-flash"
+    assert inst.model == "gemini/gemini-2.0-flash-lite-001"
 
 def test_llm_loader_api_key_vazia(monkeypatch):
     monkeypatch.setenv("GEMINI_API_KEY", "")

@@ -102,7 +102,7 @@ source ~/.bashrc
 Na pasta raiz do repositório (`leds-tools-testai`), crie um arquivo chamado `.env` com o seguinte conteúdo:
 
 ```env
-LLM_MODEL=gemini/gemini-1.5-flash
+LLM_MODEL=gemini/gemini-2.0-flash-lite-001
 GEMINI_API_KEY=<Sua Chave>
 SWAGGER_PATH=<Caminho para o Swagger>
 DTO_SOURCE=<Caminho para a pasta DTO>
@@ -111,7 +111,7 @@ DTO_SOURCE=<Caminho para a pasta DTO>
 #### Exemplo:
 
 ```env
-LLM_MODEL=gemini/gemini-1.5-flash
+LLM_MODEL=gemini/gemini-2.0-flash-lite-001
 GEMINI_API_KEY=asduf24385HDSuyad43trfjedsig
 SWAGGER_PATH=C:/Users/usuario/OneDrive/Documentos/PS2/leds-tools-testai/dtos/swagger.json
 DTO_SOURCE=C:/Users/usuario/OneDrive/Documentos/PS2/leds-tools-testai/dtos
@@ -132,9 +132,9 @@ DTO_SOURCE=C:/Users/usuario/OneDrive/Documentos/PS2/leds-tools-testai/dtos
 No terminal, dentro do repositório (`leds-tools-testai`), rode:
 
 ```bash
-python src/application/use_cases/crew_gherkin.py
+python main_menu.py
 ```
-
+- Digite o numero 1 no menu
 - Digite o nome do arquivo `.andes` (sem a extensão).
 - O arquivo `.feature` será gerado automaticamente na pasta `features` com o nome `resposta.feature`.
 
@@ -151,15 +151,33 @@ python src/application/use_cases/crew_gherkin.py
 No terminal, dentro do repositório (`leds-tools-testai`), rode:
 
 ```bash
-python src/application/use_cases/crew_xUnit.py
+python main_menu.py
 ```
 
+- Digite o numero 2 no menu
 - Digite o nome do arquivo `.feature` (sem a extensão).
 - O arquivo `resposta.cs` será gerado na pasta `resposta` que está dentro da pasta (`leds-tools-testai`).
 
 ---
+### ✅ Funcionalidade 3: Gerar Plano de Testes IEEE
 
+#### 📌 Pré-requisitos
 
+- Um arquivo `.andes` dentro da pasta `andes` que está dentro da pasta (`leds-tools-testai`).
+
+#### ▶️ Como executar
+
+No terminal, dentro do repositório (`leds-tools-testai`), rode:
+
+```bash
+python main_menu.py
+```
+
+- Digite o numero 3 no menu
+- Digite o nome do arquivo `.andes` (com a extensão).
+- O arquivo `feature_from_ieee.feature` será gerado na pasta `resposta` que está dentro da pasta (`leds-tools-testai`).
+
+---
 
 ## 🏛️ Arquitetura Adotada
 Estilo Arquitetural: Clean Architecture
@@ -390,6 +408,8 @@ return JSONResponse(body)
 |Back-end   | Crew.ai | Plataforma de multi-agentes, os quais fazem a automação dos fluxos de testes.|
 |Back-end   | LLM-model | Utiliza o modelo Gemini 1.5 flash como backend da LLM |
 
+## Link Relátorio
+- https://docs.google.com/document/d/1h-8DpTMQpLNGEt77xoV32I9SNPKs9xiHLdixjeUdCBM/edit?tab=t.0#heading=h.owxnkm2tc66g
 
 ## 📚 Referências Bibliográficas
 

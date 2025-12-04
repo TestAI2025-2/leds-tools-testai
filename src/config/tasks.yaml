@@ -108,3 +108,34 @@ gherkin_writer_task:
   description: "Escreve cenários Gherkin baseados em um plano de testes ou arquivo .andes."
   expected_output: "Arquivo .feature com cenários Gherkin válidos."
   agent: "gherkin_writer_agent"
+
+ieee_reviewer_task:
+  description: |
+    Com base no plano de teste gerado pelo agente escritor IEEE, revise e ajuste
+    o conteúdo conforme necessário. Garanta que o documento siga as normas   
+    IEEE 829 / ISO/IEC/IEEE 29119, verificando clareza, completude, critérios
+    de aceitação, rastreabilidade e padronização textual. 
+    Preste atenção especial à consistência dos objetivos, escopo,
+    critérios de entrada/saída e estrutura geral.
+    {user_case}
+  expected_output: "Plano de teste IEEE revisado e padronizado, sem formatação Markdown."
+  agent: "ieee_reviewer"
+
+manager_ieee_task:
+  description: |
+    Leia e compare o plano de teste original e a versão revisada pelo revisor IEEE.
+    Com base em ambos, desenvolva uma versão final consolidada,
+    padronizada e pronta para entrega, conforme normas IEEE 829 / ISO/IEC/IEEE 29119.
+  expected_output: "Documento final do Plano de Teste IEEE, consolidado e sem formatação Markdown."
+  agent: "manager_ieee"
+
+ieee_writer_task:
+  description: |
+    Gerar um plano de teste completo no padrão IEEE 829 / ISO/IEC/IEEE 29119
+    com base no conteúdo do arquivo .andes ou plano de testes fornecido.
+    O documento deve conter: Introdução, Objetivos, Escopo, Itens de Teste,
+    Itens fora de escopo, Abordagem de Teste, Critérios de aceitação,
+    Ambiente de teste, Cronograma, Riscos, Entregáveis e Casos de Teste.
+    {user_case}
+  expected_output: "Plano de teste IEEE completo, sem formatação Markdown."
+  agent: "ieee_writer"

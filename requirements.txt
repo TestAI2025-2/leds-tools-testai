@@ -1,7 +1,4 @@
-crewai
-crewai[tools]
-fastapi
-uvicorn
-uuid
-pytest-cov
-entrypoints==0.3
+discord.py
+python-dotenv
+requests
+reportify-ifes

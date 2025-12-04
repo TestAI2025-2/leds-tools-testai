@@ -1,0 +1,186 @@
+project BacklogProject {
+    name: "Backlog de Features - TestAI"
+    description: "Conversão automática do backlog.md para um arquivo .made contendo Project, Backlog, TimeBoxes (sprints), Roadmap e Milestones."
+    startDate: 2025-10-02
+    dueDate: 2025-11-30
+}
+
+team ProjectTeam {
+    name: "TestAI Dev Team"
+    description: "Equipe de desenvolvimento do TestAI"
+
+    teammember Pieisnolie { name: "Dominic Cassidy" email: "dominiccassidy@live.com" discord: "Pieisnolie" }
+}
+
+
+backlog TestAIBacklog {
+    name: "Backlog TestAI - Gerador IEEE"
+    description: "Backlog focado na geração de casos de teste no padrão IEEE e interface do usuário"
+
+    epic Feature_GeradorIEEE {
+        name: "Gerador de Casos de Teste IEEE"
+        description: "Implementação de scripts e configurações para gerar casos de teste automaticamente"
+        observation: "Prioridade: Alta. Núcleo do projeto."
+        
+        story ConfigFiles {
+            name: "Arquivos de Configuração YAML"
+            description: "Criação dos arquivos descritivos para os agentes e tarefas"
+            
+            task CreateAgentsYaml {
+                name: "Criar agents.yaml"
+                description: "Criar um YAML descritivo para casos de testes IEEE, com base no loader de agentes"
+                Deliverables: "agents.yaml"
+            }
+            
+            task CreateTaskYaml {
+                name: "Criar task.yaml"
+                description: "Criar um YAML descritivo para casos de testes IEEE, com base no loader de task"
+                Deliverables: "task.yaml"
+            }
+        }
+
+        story GeneratorLogic {
+            name: "Lógica do Gerador Python"
+            description: "Script principal que orquestra a leitura de arquivos e geração do Gherkin"
+            
+            task ImplementGeneratorScript {
+                name: "Criar ieee_tests_cases_generator.py"
+                description: "Script que lê arquivos, trata erros, cria agentes (dev/revisores) e gera casos de teste IEEE em Gherkin (#3)"
+                Deliverables: "Script Python funcional", "Arquivo Gherkin de saída"
+            }
+        }
+    }
+
+    epic Feature_Qualidade {
+        name: "Garantia de Qualidade (QA)"
+        description: "Testes automatizados para garantir a estabilidade do gerador"
+        observation: "Prioridade: Alta. Assegurar confiabilidade."
+
+        story UnitTests {
+            name: "Testes Unitários e de Integração"
+            description: "Validação do código fonte"
+            
+            task PytestGenerator {
+                name: "Casos de teste para o generator"
+                description: "Gerar casos de teste utilizando pytest, visando não ocorrer nenhum erro no arquivo .py (#4)"
+                Deliverables: "Arquivo de testes pytest", "Relatório de execução sem erros"
+            }
+        }
+    }
+
+    epic Feature_Interface {
+        name: "Interface de Usuário (CLI)"
+        description: "Facilitar o acesso às funcionalidades através de um menu"
+        observation: "Prioridade: Média. Melhoria de UX."
+
+        story InteractiveMenu {
+            name: "Menu Interativo"
+            description: "Navegação simplificada pelas funcionalidades"
+            
+            task BuildMenu {
+                name: "Criar menu interativo"
+                description: "Criar um menu com todas as funcionalidades do TestAI (#5)"
+                Deliverables: "Interface de menu funcional"
+            }
+        }
+    }
+}
+
+sprint Sprint_Configuracao {
+    name: "Sprint 1: Configuração dos Agentes e Tarefas"
+    description: "Foco na criação dos arquivos YAML de base (08/10 a 10/10)"
+    startDate: 2025-10-08
+    endDate: 2025-10-10
+    status: CLOSED
+    sprintbacklog Sprint1Backlog {
+        item TestAIBacklog.Feature_GeradorIEEE.ConfigFiles.CreateTaskYaml {
+            assignee: ProjectTeam.Pieisnolie
+            startDate: 2025-10-08
+            dueDate: 2025-10-10
+            status: DONE
+            complexity: MEDIUM|HARD|SPIKE
+        }
+        item TestAIBacklog.Feature_GeradorIEEE.ConfigFiles.CreateAgentsYaml {
+            assignee: ProjectTeam.Pieisnolie
+            status: DONE
+            complexity: MEDIUM|HARD|SPIKE
+        }
+    }
+}
+
+sprint Sprint_Core_Logic {
+    name: "Sprint 2: Lógica do Gerador"
+    description: "Implementação do script principal Python (28/10 a 04/11)"
+    startDate: 2025-10-28
+    endDate: 2025-11-04
+    status: CLOSED
+    sprintbacklog Sprint2Backlog {
+        item TestAIBacklog.Feature_GeradorIEEE.GeneratorLogic.ImplementGeneratorScript {
+            assignee: ProjectTeam.Pieisnolie
+            startDate: 2025-10-28
+            dueDate: 2025-11-04
+            status: DONE
+            complexity: MEDIUM|HARD|SPIKE
+        }
+    }
+}
+
+sprint Sprint_Quality_UX {
+    name: "Sprint 3: Testes e Interface"
+    description: "Implementação de testes com Pytest e Menu Interativo (28/10 a 20/11)"
+    startDate: 2025-10-28
+    endDate: 2025-11-30
+    status: IN_PROGRESS
+    sprintbacklog Sprint3Backlog {
+        item TestAIBacklog.Feature_Qualidade.UnitTests.PytestGenerator {
+            assignee: ProjectTeam.Pieisnolie
+            startDate: 2025-10-28
+            dueDate: 2025-11-20
+            status: TODO
+            complexity: MEDIUM|HARD|SPIKE
+        }
+        item TestAIBacklog.Feature_Interface.InteractiveMenu.BuildMenu {
+            assignee: ProjectTeam.Pieisnolie
+            startDate: 2025-10-28
+            status: TODO
+            complexity: MEDIUM|HARD|SPIKE
+        }
+    }
+}
+
+roadmap TestAIRoadmap {
+    name: "Roadmap TestAI"
+    description: "Evolução do gerador de Casos de Teste IEEE"
+    
+    milestone Delivery1 {
+        name: "Entrega Inicial"
+        description: "Sprint 1 + Sprint 2 + Sprint 3"
+        startDate: 2025-10-02
+        dueDate: 2025-11-02
+        status: COMPLETED
+        release V1_0 {
+            name: "Versão Inicial"
+            description: "Memória Contextual, Gráficos e Padronização - Parte 1"
+            version: "0.5.0"
+            status: RELEASED
+            item: TestAIBacklog.Feature_GeradorIEEE
+        }
+    }
+
+    milestone FinalDelivery {
+        name: "Estabilização e Usabilidade"
+        description: "Cobertura de testes e facilidade de uso"
+        startDate: 2025-11-05
+        dueDate: 2025-11-30
+        status: IN_PROGRESS
+        release V1_0 {
+            name: "Stable Release"
+            version: "1.0.0"
+            status: PLANNED
+            item: TestAIBacklog.Feature_Qualidade
+            item: TestAIBacklog.Feature_Interface
+        }
+    }
+}
+
+
